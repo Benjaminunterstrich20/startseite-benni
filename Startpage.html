@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Landing Page</title>
+
+<style>
+body {
+  background: radial-gradient(circle at 20% 20%, #1a1a2e, #000);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0 10px;
+}
+
+/* CLOCK */
+.clock {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  margin-top: 8vh;
+  font-weight: 500;
+  background: linear-gradient(90deg, #6dd5fa, #c77dff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.date {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  margin-bottom: 5vh;
+  opacity: 0.7;
+}
+
+/* GLASS BASE */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* SEARCH */
+.search-box {
+  margin-bottom: 6vh;
+  width: 95%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+.search-box form {
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 15px 14px 50px;
+  font-size: 1.1rem;
+  border-radius: 15px;
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.google-icon {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  width: 20px;
+  opacity: 0.7;
+}
+
+/* ICON GRID */
+.icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+/* ICON CARD */
+.icon-container {
+  padding: 12px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+/* ICON BASE */
+.icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+
+  transition: all 0.3s ease;
+}
+
+/* INDIVIDUAL COLORS */
+.icon.cgn { box-shadow: 0 0 15px rgba(0, 200, 255, 0.3); }
+.icon.ber { box-shadow: 0 0 15px rgba(255, 100, 100, 0.3); }
+.icon.yt  { box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+.icon.ew  { box-shadow: 0 0 15px rgba(180, 0, 255, 0.3); }
+.icon.nf  { box-shadow: 0 0 15px rgba(255, 0, 80, 0.3); }
+
+/* HOVER = LIQUID GLOW */
+.icon:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 25px currentColor;
+}
+
+/* FLOAT */
+.icon-container:hover {
+  transform: translateY(-6px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
+  .icon {
+    width: 55px;
+    height: 55px;
+    font-size: 0.8rem;
+  }
+}
+</style>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  document.getElementById('time').textContent =
+    now.toLocaleTimeString('de-DE', {hour: '2-digit', minute:'2-digit'});
+  document.getElementById('date').textContent =
+    now.toLocaleDateString('de-DE');
+}
+setInterval(updateClock, 1000);
+window.onload = updateClock;
+</script>
+
+</head>
+
+<body>
+
+<div class="clock" id="time"></div>
+<div class="date" id="date"></div>
+
+<div class="search-box glass">
+  <form action="https://www.google.com/search" method="GET">
+    <img class="google-icon" src="https://www.google.com/favicon.ico" />
+    <input type="text" name="q" placeholder="Search Google or type a URL" />
+  </form>
+</div>
+
+<div class="icons">
+
+  <div class="icon-container glass">
+    <a href="https://www.koeln-bonn-airport.de" class="icon cgn">CGN</a>
+  </div>
+
+  <div class="icon-container glass">
+    <a href="https://ber.berlin-airport.de" class="icon ber">BER</a>
+  </div>
+
+  <div class="icon-container glass">
+    <a href="https://www.youtube.com" class="icon yt">YT</a>
+  </div>
+
+  <div class="icon-container glass">
+    <a href="https://www.eurowings.com" class="icon ew">EW</a>
+  </div>
+
+  <div class="icon-container glass">
+    <a href="https://www.netflix.com" class="icon nf">Netflix</a>
+  </div>
+
+</div>
+
+</body>
+</html>
